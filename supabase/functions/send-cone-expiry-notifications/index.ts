@@ -4,7 +4,7 @@ import webpush from "npm:web-push@3.6.7";
 
 const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-cron-secret", "Access-Control-Allow-Methods": "POST, OPTIONS", "Content-Type": "application/json" };
 const response = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: cors });
-const dateAtSaoPaulo = (date: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
+const dateAtSaoPaulo = (date: Date) => {\n  const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(date);\n  const part = (type: string) => parts.find((item) => item.type === type)?.value || "";\n  return `${part("year")}-${part("month")}-${part("day")}`;\n};
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
