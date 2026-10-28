@@ -56,4 +56,7 @@ begin
 end;
 $$;
 revoke all on function public.move_cone(uuid,text,text,text,text) from public;
+revoke execute on function public.move_cone(uuid,text,text,text,text) from anon;
+revoke execute on function public.is_radius_admin() from anon;
+grant execute on function public.is_radius_admin() to authenticated;
 grant execute on function public.move_cone(uuid,text,text,text,text) to authenticated;
