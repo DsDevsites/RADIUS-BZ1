@@ -13,9 +13,6 @@ const dateAtSaoPaulo = (date: Date) => {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
   if (req.method !== "POST") return response({ error: "Method not allowed" }, 405);
-  const cronSecret = Deno.env.get("CRON_SECRET");
-  if (!cronSecret || req.headers.get("x-cron-secret") !== cronSecret) return response({ error: "Unauthorized" }, 401);
-
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   const vapidPublicKey = Deno.env.get("VAPID_PUBLIC_KEY");
@@ -24,6 +21,9 @@ Deno.serve(async (req) => {
   if (!supabaseUrl || !serviceRoleKey || !vapidPublicKey || !vapidPrivateKey) return response({ error: "Missing server configuration" }, 500);
   webpush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
   const db = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
+  const cronSecret = req.headers.get("x-cron-secret") || "";
+  const { data: authorized, error: authorizationError } = await db.rpc("validate_push_cron_secret", { candidate: cronSecret });
+  if (authorizationError || authorized !== true) return response({ error: "Unauthorized" }, 401);
 
   const today = dateAtSaoPaulo(new Date());
   const tomorrowDate = new Date(new Date(today + "T12:00:00-03:00").getTime() + 86400000);
