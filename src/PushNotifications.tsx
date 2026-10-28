@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { Bell, BellRing } from "lucide-react";
+import { Bell, BellRing, X } from "lucide-react";
 
 type Props = { supabase: SupabaseClient | null; session: any };
 type PushSubscriptionRow = { endpoint: string; keys: { p256dh: string; auth: string } };
@@ -16,6 +16,7 @@ export default function PushNotifications({ supabase, session }: Props) {
   const [busy, setBusy] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const [message, setMessage] = useState("");
+  const [dismissed, setDismissed] = useState(false);
   const supported = typeof window !== "undefined" && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
   const vapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY as string | undefined;
 
@@ -33,7 +34,7 @@ export default function PushNotifications({ supabase, session }: Props) {
     return () => { active = false; };
   }, [supported, session?.user?.id]);
 
-  if (!session?.user?.id) return null;
+  if (!session?.user?.id || dismissed) return null;
 
   async function enableNotifications() {
     if (!supabase) { setMessage("O banco de dados não está configurado."); return; }
@@ -86,7 +87,7 @@ export default function PushNotifications({ supabase, session }: Props) {
   }
 
   return <aside aria-label="Notificações de vencimento" style={{position:"fixed",right:16,bottom:16,zIndex:45,width:"min(360px,calc(100vw - 32px))",padding:14,border:"1px solid #4b3829",borderRadius:14,background:"#181818",boxShadow:"0 12px 40px #0009",color:"#f4f4f5"}}>
-    <div style={{display:"flex",alignItems:"center",gap:9,marginBottom:7,color:"#fb923c"}}>{enabled ? <BellRing size={19}/> : <Bell size={19}/>}<strong style={{fontSize:13,color:"#f4f4f5"}}>Alertas de vencimento</strong></div>
+    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:9,marginBottom:7,color:"#fb923c"}}><div style={{display:"flex",alignItems:"center",gap:9,minWidth:0}}>{enabled ? <BellRing size={19}/> : <Bell size={19}/>}<strong style={{fontSize:13,color:"#f4f4f5"}}>Alertas de vencimento</strong></div><button type="button" onClick={() => setDismissed(true)} aria-label="Fechar painel de notificações" title="Fechar" style={{display:"grid",placeItems:"center",flexShrink:0,width:30,height:30,border:"1px solid #454545",borderRadius:8,background:"transparent",color:"#bdbdbd",cursor:"pointer"}}><X size={17}/></button></div>
     <p style={{fontSize:11,lineHeight:1.5,color:"#bdbdbd",margin:"0 0 11px"}}>Receba avisos dos cones no celular, inclusive quando o site estiver fechado.</p>
     <button type="button" onClick={enabled ? disableNotifications : enableNotifications} disabled={busy} style={{width:"100%",minHeight:42,border:0,borderRadius:9,background:"#f97316",color:"#17100a",fontWeight:700,cursor:busy?"wait":"pointer",opacity:busy?.7:1}}>
       {busy ? "Aguarde..." : enabled ? "Desativar neste celular" : "Ativar notificações"}
