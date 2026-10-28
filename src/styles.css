@@ -37,3 +37,8 @@
  .form-stack input[type=file]{font-size:12px}
  .form-stack .button{min-height:46px;font-size:13px;white-space:normal}
 }
+
+/* Make expiry date field clearly visible and interactive on desktop and mobile */
+.form-stack .due-date-field input[type="date"]{display:block;appearance:auto;-webkit-appearance:auto;min-height:48px;width:100%;padding:12px;border:1px solid #6b4a35;border-radius:8px;background-color:#101010;color:#f4f4f5;color-scheme:dark;font-size:16px;line-height:1.4;cursor:pointer;opacity:1;visibility:visible}
+.form-stack .due-date-field input[type="date"]::-webkit-calendar-picker-indicator{display:block;opacity:1;cursor:pointer;filter:invert(1);width:18px;height:18px}
+.form-stack .due-date-field input[type="date"]:focus{outline:2px solid var(--orange);outline-offset:2px;border-color:var(--orange)}
