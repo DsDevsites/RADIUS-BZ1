@@ -5,3 +5,35 @@
 @media(min-width:761px) and (max-width:1000px){.sidebar{width:220px}.main-area{margin-left:220px}.cone-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.content{padding:24px 18px}.topbar{padding:0 18px}}
 
 .delete-cone-button{color:#ff6b6b!important;border-color:#633333!important}.delete-cone-button:hover{background:#351919!important;border-color:#ff6b6b!important}
+
+/* Mobile polish: prevent action overflow and keep cone actions in a vertical flow */
+.card-actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;min-width:0}
+.card-actions .button{min-width:0;white-space:normal;line-height:1.3}
+.card-actions .button.full{flex:1 1 100%;width:100%}
+.card-actions .action-icon{width:46px;height:46px;min-width:46px;flex:0 0 46px;border-radius:11px}
+.modal-backdrop{align-items:center;overflow-y:auto;overscroll-behavior:contain}
+.modal{width:min(100%,520px);max-width:100%;max-height:calc(100dvh - 28px);padding:clamp(16px,4vw,24px);overflow-x:hidden}
+.form-stack,.form-stack label{min-width:0}
+.form-stack input,.form-stack textarea,.form-stack select{min-width:0;max-width:100%}
+.form-stack input[type=file]{padding:10px;font-size:11px;overflow:hidden}
+.form-stack input[type=file]::file-selector-button{margin:0 10px 6px 0;border:1px solid #4a392c;background:#302116;color:#ffb477;padding:8px 10px;border-radius:7px}
+@media(max-width:760px){
+ .cone-card:hover{transform:none}
+ .card-actions{display:flex;flex-direction:column;align-items:stretch;gap:9px}
+ .card-actions .button,.card-actions .button.full{width:100%;min-height:46px;flex:1 1 auto;font-size:12px;padding:12px}
+ .card-actions .action-icon{display:flex;align-items:center;justify-content:flex-start;gap:12px;width:100%;height:auto;min-height:46px;flex:1 1 auto;padding:0 14px;border-radius:10px;font-size:12px}
+ .card-actions .action-icon::after{font-size:12px;font-weight:600;color:inherit}
+ .card-actions .action-icon[title="Enviar para manutenção"]::after{content:"Enviar para manutenção"}
+ .card-actions .action-icon[title="Editar dados do cone"]::after{content:"Editar dados do cone"}
+ .card-actions .delete-cone-button::after{content:"Excluir cone"}
+ .cone-photo{height:180px}
+ .modal-backdrop{padding:10px;place-items:center}
+ .modal{width:100%;max-height:calc(100dvh - 20px);border-radius:14px;padding:17px}
+ .modal-header{margin-bottom:17px}
+ .modal-header h2{font-size:19px}
+ .form-stack{gap:12px}
+ .form-stack label{font-size:12px}
+ .form-stack input,.form-stack textarea,.form-stack select{font-size:16px;padding:12px}
+ .form-stack input[type=file]{font-size:12px}
+ .form-stack .button{min-height:46px;font-size:13px;white-space:normal}
+}
