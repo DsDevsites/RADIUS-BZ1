@@ -42,3 +42,77 @@
 .form-stack .due-date-field input[type="date"]{display:block;appearance:auto;-webkit-appearance:auto;min-height:48px;width:100%;padding:12px;border:1px solid #6b4a35;border-radius:8px;background-color:#101010;color:#f4f4f5;color-scheme:dark;font-size:16px;line-height:1.4;cursor:pointer;opacity:1;visibility:visible}
 .form-stack .due-date-field input[type="date"]::-webkit-calendar-picker-indicator{display:block;opacity:1;cursor:pointer;filter:invert(1);width:18px;height:18px}
 .form-stack .due-date-field input[type="date"]:focus{outline:2px solid var(--orange);outline-offset:2px;border-color:var(--orange)}
+
+
+/* RADIUS BZ1 — identidade visual azul e branco */
+:root{
+ color:#172b4d;background:#f4f8fd;color-scheme:light;
+ --bg:#f4f8fd;--panel:#ffffff;--panel2:#edf4fc;--line:#d8e3f0;
+ --muted:#64748b;--orange:#1769c2;--orange2:#2f83dc;
+}
+body,.app-shell{background:#f4f8fd;color:#172b4d}
+.sidebar{background:#ffffff;border-color:#d8e3f0;box-shadow:4px 0 20px #173b6410}
+.brand-mark{background:#1769c2;color:#fff}
+.brand strong span,.eyebrow,.page-heading h1 span,.cone-tag,.text-button{color:#1769c2}
+.nav-label{color:#7890aa}
+.nav-item{color:#526780}
+.nav-item:hover{background:#edf4fc;color:#174d86}
+.nav-item.active{background:#e5f0ff;color:#145ba8}
+.nav-count{background:#1769c2;color:#fff}
+.topbar{background:#fff;border-color:#d8e3f0}
+.breadcrumb{color:#71839a}.breadcrumb span{color:#a5b5c8}.breadcrumb strong{color:#172b4d}
+.user-avatar{background:#eaf3ff;border-color:#c5dcf7;color:#1769c2}
+.icon-button{background:#fff;border-color:#d8e3f0;color:#526780}
+.icon-button:hover{border-color:#1769c2;color:#1769c2}
+.button.primary{background:#1769c2;color:#fff}
+.button.primary:hover{background:#0f57a5}
+.button.secondary{background:#fff;border-color:#d3dfec;color:#29415e}
+.button.secondary:hover{border-color:#1769c2}
+.stat-card,.cone-card,.modal{background:#fff;border-color:#d8e3f0;box-shadow:0 5px 18px #183b6410}
+.stat-card.warn{border-color:#f0d79b}.stat-card.danger{border-color:#f0b8b8}
+.stat-icon{background:#eaf3ff;color:#1769c2}
+.stat-label{color:#60748d}.stat-detail{color:#8191a5}
+.muted-count{color:#1769c2;background:#eaf3ff}
+.search-box,.filter-select{background:#fff;border-color:#d8e3f0;color:#60748d}
+.search-box input,.filter-select select{color:#172b4d}
+.search-box input::placeholder{color:#91a0b2}
+.filter-select option,.form-stack select option{background:#fff;color:#172b4d}
+.cone-photo{background:#eaf1f8}
+.photo-placeholder{background:radial-gradient(ellipse at 50% 40%,#dbeafe 0%,#edf4fc 65%);color:#1769c2}
+.status-pill{background:#ffffffed;border-color:#d8e3f0;color:#40556f}
+.status-pill.almoxarifado{background:#e8f7ef;border-color:#b7e4ca;color:#187346}
+.status-pill.operacional{background:#eaf3ff;border-color:#c5dcf7;color:#145ba8}
+.status-pill.manutencao{background:#fff0f0;border-color:#f0c4c4;color:#b42318}
+.photo-upload{background:#ffffffed;color:#1769c2}
+.cone-info h3{color:#172b4d}
+.cone-description{color:#64748b}
+.cone-detail,.expiry-line{border-color:#e5edf5}
+.cone-detail span,.cone-detail span svg{color:#71839a}
+.cone-detail strong,.expiry-line>div strong{color:#253b56}
+.expiry-line>div span{color:#71839a}
+.expiry-badge.good{color:#187346;background:#e8f7ef}
+.expiry-badge.warn{color:#956300;background:#fff5d9}
+.expiry-badge.danger{color:#b42318;background:#fff0f0}
+.expiry-badge.neutral{color:#60748d;background:#edf2f7}
+.empty-state{border-color:#cbd8e6;color:#71839a}
+.empty-state strong{color:#29415e}
+.footer{color:#71839a}.footer i{background:#1769c2}
+.modal-backdrop{background:#10243b80}
+.modal{border-color:#d8e3f0}
+.form-stack label{color:#526780}
+.form-stack input,.form-stack textarea,.form-stack select{background:#fff;border-color:#cbd8e6;color:#172b4d}
+.form-stack input::placeholder,.form-stack textarea::placeholder{color:#91a0b2}
+.form-stack small{color:#71839a}
+.form-stack .due-date-field input[type="date"]{background:#fff;color:#172b4d;border-color:#9bbce0;color-scheme:light}
+.form-stack .due-date-field input[type="date"]::-webkit-calendar-picker-indicator{filter:none}
+.form-stack .due-date-field input[type="date"]:focus{outline-color:#1769c2;border-color:#1769c2}
+.setup-banner{border-color:#b9d4f3;background:#edf5ff;color:#145ba8}
+.setup-banner p{color:#466b95}
+.notice{background:#eaf3ff;border-color:#c5dcf7;color:#174d86}
+.notice button{color:inherit}
+.system-status{border-color:#d8e3f0}
+.system-status small,.user-summary small{color:#71839a}
+.delete-cone-button{color:#c62828!important;border-color:#efc1c1!important}
+.delete-cone-button:hover{background:#fff0f0!important;border-color:#c62828!important}
+.form-stack input[type=file]::file-selector-button{border-color:#c5dcf7;background:#eaf3ff;color:#145ba8}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#1769c2}
